@@ -5,7 +5,7 @@ function ProfilePage() {
   useEffect(() => {
     async function getProfile() {
       try {
-        const reponse = await axios.get("/user/profile");
+        const reponse = await api.get("/user/profile");
         setUser(reponse.data);
       } catch (error) {
         console.log(error);
@@ -16,6 +16,9 @@ function ProfilePage() {
   return (
     <div>
       <h1>Profile Page</h1>
+      <h1>Olá, {user.name}</h1>
+      <h1>Email: {user.email}</h1>
+      <img src={user.profilePicture} alt={user.name} />
     </div>
   );
 }

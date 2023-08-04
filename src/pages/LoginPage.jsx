@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -20,6 +21,7 @@ function LoginPage() {
         "http://localhost:4000/user/login",
         form
       );
+      console.log(response.data.token);
       const token = response.data.token;
       localStorage.setItem("userToken", token);
       navigate("/profile");
@@ -29,19 +31,7 @@ function LoginPage() {
     }
   }
   console.log(form);
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:4000/user/login",
-        form
-      );
-      navigate("/profile");
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
   return (
     <div>
       <h1>Login Page</h1>
