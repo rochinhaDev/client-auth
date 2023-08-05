@@ -31,10 +31,10 @@ function LoginPage() {
     }
   }
   console.log(form);
-  
+
   return (
     <div>
-      <h1>Login Page</h1>
+      <h1 className="text-blue-500 text-3xl">Login Page</h1>
       <form onSubmit={handleSubmit}></form>
       <div>
         <label>Email</label>
@@ -56,7 +56,7 @@ function LoginPage() {
           required={true}
         />
       </div>
-      <button type="submit" onClick={handleSubmit}>
+      <button classname="" type="submit" onClick={handleSubmit}>
         Login
       </button>
     </div>
