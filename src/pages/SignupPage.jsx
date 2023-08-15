@@ -10,6 +10,7 @@ function SignupPage() {
     telefone: "",
     password: "",
   });
+  const [userType, setUserType] = useState("user");
   const [photo, setPhoto] = useState("");
   function handleChange(e) {
     setForm({
@@ -37,10 +38,15 @@ function SignupPage() {
         profilePicture: url,
       };
       console.log(formWithPhoto);
-      const response = await axios.post(
-        "http://localhost:4000/user/signup",
-        formWithPhoto
-      );
+      if (userType === "user") {
+        await axios.post("http://localhost:4000/user/signup", formWithPhoto);
+      }
+      if (userType === "business") {
+        await axios.post(
+          "http://localhost:4000/business/signup",
+          formWithPhoto
+        );
+      }
       navigate("/login");
       console.log(response);
     } catch (error) {
@@ -53,9 +59,26 @@ function SignupPage() {
   }
   console.log(form);
 
+  function handleRadio(e) {}
   return (
     <form onSubmit={handleSubmit}>
       <h1>Signup Page</h1>
+      <div>
+        <label>Usuário</label>
+        <input
+          type="radio"
+          name="userType"
+          value="user"
+          onChange={handleRadio}
+        />
+        <label>Empresa</label>
+        <input
+          type="radio"
+          name="userType"
+          value="business"
+          onChange={handleRadio}
+        />
+      </div>
       <div>
         <label>Nome Completo</label>
         <input
@@ -63,7 +86,7 @@ function SignupPage() {
           name="name"
           value={form.name}
           onChange={handleChange}
-          required={true}
+          required
         />
       </div>
       <div>

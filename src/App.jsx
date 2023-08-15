@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 import ProtectRoute from "./components/ProtectRoute";
+import ProfileBusinessPage from "./pages/ProfileBusinessPage";
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
           <Route
             path="/profile"
             element={<ProtectRoute Component={ProfilePage} />}
+          />
+          <Route
+            path="/profile-business"
+            element={<ProtectRoute Component={ProfileBusinessPage} />}
           />
         </Routes>
       </div>
