@@ -4,20 +4,22 @@ import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     email: "",
     password: "",
   });
+
   const [userType, setUserType] = useState("user");
+
   function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   }
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      //lógica de submit do form
       let response;
 
       if (userType === "user") {
@@ -30,62 +32,74 @@ function LoginPage() {
           form
         );
       }
-      console.log(response.data.token);
+
+      //GUARDAR O TOKEN
       const token = response.data.token;
       localStorage.setItem("userToken", token);
-      if (userType === "user") navigate("/profile");
-      if (userType === "business") navigate("/profile-businsess");
 
-      console.log(response);
+      if (userType === "user") navigate("/profile");
+      if (userType === "business") navigate("/profile-business");
     } catch (error) {
+      // lógica se der erro na requisição
       console.log(error);
     }
   }
-  console.log(form);
-  function handleRadio(e) {}
+
+  function handleRadio(e) {
+    setUserType(e.target.value);
+  }
+
   return (
     <div>
-      <h1 className="text-blue-500 text-3xl">Login Page</h1>
-      <form onSubmit={handleSubmit}></form>
-      <div>
+      <h1>Login Page</h1>
+
+      <form onSubmit={handleSubmit}>
         <div>
-          <label>Usuário</label>
+          <label>
+            Usuário
+            <input
+              type="radio"
+              name="userType"
+              value="user"
+              onChange={handleRadio}
+            />
+          </label>
+
+          <label>
+            Empresa
+            <input
+              type="radio"
+              name="userType"
+              value="business"
+              onChange={handleRadio}
+            />
+          </label>
+        </div>
+
+        <div>
+          <label>Email</label>
           <input
-            type="radio"
-            name="userType"
-            value="user"
-            onChange={handleRadio}
-          />
-          <label>Empresa</label>
-          <input
-            type="radio"
-            name="userType"
-            value="business"
-            onChange={handleRadio}
+            type="email"
+            name="email"
+            value={form.email}
+            onChange={handleChange}
+            required
           />
         </div>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          required={true}
-        />
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={form.password}
-          onChange={handleChange}
-          required={true}
-        />
-      </div>
-      <button className="" type="submit" onClick={handleSubmit}>
-        Login
-      </button>
+
+        <div>
+          <label>Senha</label>
+          <input
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <button>LOGIN</button>
+      </form>
     </div>
   );
 }
