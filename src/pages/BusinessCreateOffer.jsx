@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import api from "../axios/api.js";
+import { useNavigate } from "react-router-dom";
 export default function BusinessCreateOffer() {
   const [job, setJob] = useState({
     title: "",
@@ -7,16 +8,33 @@ export default function BusinessCreateOffer() {
     salary: "",
     city: "",
     state: "",
-    model: "",
+    model: "REMOTO",
   });
-
+  const navigate = useNavigate();
   function handleChange(e) {
     setJob({ ...job, [e.target.name]: e.target.value });
   }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await api.post("/job/create", job);
 
+      setJob({
+        title: "",
+        description: "",
+        salary: "",
+        city: "",
+        state: "",
+        model: "",
+      });
+      navigate("/profile-business");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="flex flex-col space-y-2 mb-2">
           <label className="text-gray-600 font-semibold">Título</label>
           <input
