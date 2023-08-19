@@ -33,9 +33,11 @@ function LoginPage() {
         );
       }
 
-      //GUARDAR O TOKEN
+      //GUARDAR O TOKEN + GUARDAR O ID DO USUARIO
       const token = response.data.token;
+      const userId = response.data.id;
       localStorage.setItem("userToken", token);
+      localStorage.setItem("userId", userId);
 
       if (userType === "user") navigate("/profile");
       if (userType === "business") navigate("/profile-business");
