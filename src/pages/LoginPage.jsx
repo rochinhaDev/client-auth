@@ -35,7 +35,8 @@ function LoginPage() {
 
       //GUARDAR O TOKEN + GUARDAR O ID DO USUARIO
       const token = response.data.token;
-      const userId = response.data.id;
+      const userId = response.data.user._id;
+
       localStorage.setItem("userToken", token);
       localStorage.setItem("userId", userId);
 
