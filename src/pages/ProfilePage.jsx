@@ -12,6 +12,7 @@ function ProfilePage() {
   });
 
   const [reload, setReload] = useState(true);
+  const id_user = localStorage.getItem("userId");
 
   const navigate = useNavigate();
 
@@ -138,6 +139,9 @@ function ProfilePage() {
                   >
                     <p>{job.title}</p>
                     <p>{job.status}</p>
+                    {id_user === job.select_candidate &&(
+                      <p>Selecionado</p>
+                    )}
                   </Link>
                 );
               })}
