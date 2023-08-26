@@ -35,7 +35,9 @@ function App() {
             path="/business/criar-vaga"
             element={<ProtectRoute Component={BusinessCreateOffer} />}
           />
+
           <Route path="/jobs" element={<ProtectRoute Component={JobsPage} />} />
+
           <Route
             path="/jobs/:id_job"
             element={<ProtectRoute Component={JobDetailPage} />}

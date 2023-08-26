@@ -72,9 +72,7 @@ export default function ProfileBusinessPage() {
                       className="hover:bg-blue-200 p-2 rounded-sm"
                     >
                       <Link to={`/jobs/${job._id}`}>
-                        <span className="font-bold">{job.title}</span> -{" "}
-                        {job.createdAt} -{" "}
-                        <span className="font-semibold">{job.status}</span>
+                        {job.title} - {job.createdAt} - {job.status}
                       </Link>
                     </div>
                   );

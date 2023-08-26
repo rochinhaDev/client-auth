@@ -55,80 +55,105 @@ function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow-md w-96">
-        <h1 className="flex justify-center text-2xl font-bold mb-4">
-          Login Page
-        </h1>
+    <div className="flex min-h-full justify-center items-center bg-gray-100">
+      <div className=" sm:w-full sm:max-w-sm bg-white p-8 rounded-lg shadow">
+        <img
+          className="mx-auto h-10 w-auto"
+          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+          alt="Your Company"
+        />
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 text-gray-900">
+          Entre na sua conta
+        </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex flex-row justify-center items-center space-x-4">
-            <label className="flex flex-row items-center">
+        <form className="mt-10 space-y-6" onSubmit={handleSubmit}>
+          <div className="flex items-center justify-evenly space-x-4">
+            <label className="block text-sm font-medium leading-6 text-gray-900">
+              Usuário
               <input
                 type="radio"
                 name="userType"
                 value="user"
                 onChange={handleRadio}
-                className="text-indigo-600 form-radio focus:ring-indigo-500"
+                checked={userType === "user"}
+                className="ml-2"
               />
-              <span className="ml-2 text-gray-900">Usuário</span>
             </label>
 
-            <label className="flex flex-row items-center">
+            <label className="block text-sm font-medium leading-6 text-gray-900">
+              Empresa
               <input
                 type="radio"
                 name="userType"
                 value="business"
                 onChange={handleRadio}
-                className="text-indigo-600 form-radio focus:ring-indigo-500"
+                checked={userType === "business"}
+                className="ml-2"
               />
-              <span className="ml-2 text-gray-900">Empresa</span>
             </label>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-900">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               Email
             </label>
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+            <div className="mt-2">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={form.email}
+                onChange={handleChange}
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-900">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
               Senha
             </label>
-            <input
-              type="password"
-              name="password"
-              value={form.password}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
+            <div className="mt-2">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={form.password}
+                onChange={handleChange}
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+            </div>
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Entrar
-          </button>
+          <div>
+            <button
+              type="submit"
+              className="w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Entrar
+            </button>
+          </div>
         </form>
+
         <p className="mt-10 text-center text-xs text-gray-500">
-          Problemas com o login?{}
+          Problemas com o login?{" "}
           <a
             href="https://wa.me/+5511981860227/?text=Não%20consegui%20me%20cadastrar%20no%20site"
-            className="text-indigo-600"
+            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+            target="_blank"
+            rel="noreferrer noopener"
           >
-            {" "}
-            Entre em contato com a gente.
+            Entre em contato com a gente
           </a>
         </p>
       </div>

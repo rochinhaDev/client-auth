@@ -89,8 +89,13 @@ function SignupPage() {
     <div>
       <div className="flex min-h-full justify-center items-center bg-gray-100">
         <div className="sm:w-full sm:max-w-sm bg-white p-8 rounded-lg shadow">
+          <img
+            className="mx-auto h-10 w-auto"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            alt="Your Company"
+          />
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 text-gray-900">
-            Cadastre-se
+            Cadastre-se na sua conta
           </h2>
 
           <form className="mt-4 space-y-4" onSubmit={handleSubmit}>

@@ -17,12 +17,13 @@ export default function HomePage() {
     <main>
       <div className="relative">
         <img
-          className="h-32 w-full object-cover rounded-md opacity-90"
-          src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          className="h-32 w-full object-cover rounded-md"
+          src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2669&q=80"
         />
+
         <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-70 rounded-md">
           <p className="text-white text-3xl font-mono text-center">
-            Encontre aqui sua vaga de Desenvolvedor
+            Encontre aqui sua próxima vaga de emprego no mundo da tecnologia.
           </p>
         </div>
       </div>

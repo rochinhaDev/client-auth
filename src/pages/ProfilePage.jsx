@@ -12,7 +12,6 @@ function ProfilePage() {
   });
 
   const [reload, setReload] = useState(true);
-  const id_user = localStorage.getItem("userId");
 
   const navigate = useNavigate();
 
@@ -56,10 +55,11 @@ function ProfilePage() {
     <div>
       <Link
         to="/jobs"
-        className="my-2 bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
+        className="mb-2 bg-gray-400 hover:bg-gray-500 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
       >
-        Procure sua vaga de emprego
+        PROCURE SUA VAGA DE EMPREGO
       </Link>
+
       <h1 className="mt-4">Olá, {user.name}</h1>
 
       <p>Email: {user.email}</p>
@@ -130,18 +130,15 @@ function ProfilePage() {
           </Tab.Panel>
           <Tab.Panel className="rounded-xl bg-white p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2">
             <div>
-              {user.history?.map((job) => {
+              {user.history_jobs?.map((job) => {
                 return (
                   <Link
-                    to={`jobs/${job._id}`}
+                    to={`/jobs/${job._id}`}
                     key={job._id}
                     className="flex justify-between"
                   >
                     <p>{job.title}</p>
                     <p>{job.status}</p>
-                    {id_user === job.select_candidate &&(
-                      <p>Selecionado</p>
-                    )}
                   </Link>
                 );
               })}
