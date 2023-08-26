@@ -15,20 +15,20 @@ export default function JobsPage() {
   console.log(jobs);
   return (
     <>
-      <h1 className="mb-4">Ache uma vaga para você!!</h1>
+      <h1 className="mb-4 text-2xl font-semibold">Ache uma vaga para você!!</h1>
       <div className="flex gap-4 flex-wrap">
         {jobs.map((job) => {
           return (
             <Link
               key={job._id}
-              className="border rounded-lg shadow-sm flex flex-col p-2 bg-white w-1/3 hover:scale-105 items-start"
+              className="border rounded-lg shadow-sm flex flex-col p-2 bg-white w-1/3 hover:scale-105 items-start transition-transform duration-300"
               to={`/jobs/${job._id}`}
             >
-              <h1>{job.title}</h1>
+              <h1 className="text-lg font-semibold">{job.title}</h1>
               <p className="text-sm inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-700/10">
                 {job.model}
               </p>
-              <p className="text-sm">Local: {job.city}</p>
+              <p className="text-sm mt-1">Local: {job.city}</p>
             </Link>
           );
         })}

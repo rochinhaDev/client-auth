@@ -81,8 +81,7 @@ export default function JobDetailPage() {
           </p>
         </div>
 
-        {/* Mostrar o botão de candidatar-se apenas se for USER */}
-        {role === "USER" && alreadyApply === false && (
+        {role === "USER" && !alreadyApply && (
           <button
             onClick={handleApply}
             className="mt-4 bg-indigo-500 py-2 px-4 rounded-lg text-white hover:bg-indigo-600"
@@ -90,7 +89,7 @@ export default function JobDetailPage() {
             Me candidatar
           </button>
         )}
-        {role === "USER" && alreadyApply === true && (
+        {role === "USER" && alreadyApply && (
           <button
             className="mt-4 bg-indigo-500 py-2 px-4 rounded-lg text-white hover:bg-indigo-600"
             disabled
@@ -115,7 +114,6 @@ export default function JobDetailPage() {
                   <pre className="mt-4 whitespace-pre-line font-sans">
                     {candidate.curriculo}
                   </pre>
-                  {/* falta curriculo */}
                   {!job.select_candidate && (
                     <button
                       onClick={() => handleApprove(candidate._id)}
