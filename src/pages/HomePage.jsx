@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 export default function HomePage() {
   const [jobs, setJobs] = useState([]);
+  const [search, setSearch] = useState("");
+  const [selectedModel, setSelectedModel] = useState("");
   useEffect(() => {
     async function getJobs() {
       const response = await axios.get(
@@ -12,7 +14,13 @@ export default function HomePage() {
 
     getJobs();
   }, []);
-  console.log(jobs);
+  function handleSearch(e) {
+    setSearch(e.target.value);
+  }
+  function handleModelFilter(e) {
+    setSelectedModel(e.target.value);
+  }
+  console.log(search);
   return (
     <main>
       <div className="relative mb-4">
@@ -28,34 +36,61 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div>{/* AQUI VAI O SEARCH BAR E O FILTRO */}</div>
+      <div className="mb-4 flex gap-2">
+        <input
+          type="text"
+          placeholder="Busque por vagas"
+          className="border border-gray-300 rounded-md px-4 py-2 w-full"
+          value={search}
+          onChange={handleSearch}
+        />
+        <select
+          onChange={handleModelFilter}
+          className="border border-gray-300 rounded-md px-4 py-2 pr-8"
+        >
+          <option value="">Todos</option>
+          <option value="REMOTO">Remoto</option>
+          <option value="PRESENCIAL">Presencial</option>
+          <option value="HIBRIDO">Hibrido</option>
+        </select>
+      </div>
 
       {/* aqui vai mostrar os cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
-        {jobs.map((job) => {
-          return (
-            <div
-              key={job._id}
-              className="bg-white rounded-lg shadow-sm p-2 ring-1 ring-gray-400 ring-offset-2 transform hover:scale-95 transition-transform duration-300"
-            >
-              <h2 className="text-lg font-bold">{job.title}</h2>
-              <p className="text-xs">Local: {job.city}</p>
-              <div className="flex gap-4 my-2">
-                <p className="bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 rounded-md">
-                  {job.model}
-                </p>
-                <p className="bg-purple-50 px-2 py-1 text-xs font-medium text-indigo-700 rounded-md">
-                  Salário: R${job.salary},00
-                </p>
+        {jobs
+          .filter((job) => {
+            return job.title.toLowerCase().includes(search.toLowerCase());
+          })
+          .filter((job) => {
+            if (selectedModel === "") {
+              return true;
+            }
+            return job.model === selectedModel;
+          })
+          .map((job) => {
+            return (
+              <div
+                key={job._id}
+                className="bg-white rounded-lg shadow-sm p-2 ring-1 ring-gray-400 ring-offset-2 transform hover:scale-95 transition-transform duration-300"
+              >
+                <h2 className="text-lg font-bold">{job.title}</h2>
+                <p className="text-xs">Local: {job.city}</p>
+                <div className="flex gap-4 my-2">
+                  <p className="bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 rounded-md">
+                    {job.model}
+                  </p>
+                  <p className="bg-purple-50 px-2 py-1 text-xs font-medium text-indigo-700 rounded-md">
+                    Salário: R${job.salary},00
+                  </p>
+                </div>
+                <div className="border-t pt-1">
+                  <p className="text-sm font-semibold leading-6 text-gray-800 hover:underline">
+                    Ver detalhes &rarr;
+                  </p>
+                </div>
               </div>
-              <div className="border-t pt-1">
-                <p className="text-sm font-semibold leading-6 text-gray-800 hover:underline">
-                  Ver detalhes &rarr;
-                </p>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </main>
   );

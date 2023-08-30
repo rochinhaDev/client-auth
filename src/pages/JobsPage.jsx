@@ -20,12 +20,12 @@ export default function JobsPage() {
     <>
       <h1>Vagas</h1>
 
-      <div className="flex gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {jobs.map((job) => {
           return (
             <Link
               key={job._id}
-              className="border rounded-lg shadow-sm flex flex-col items-start p-2 bg-white w-1/3 hover:scale-105 gap-1"
+              className="flex w-5/6 border rounded-lg shadow-sm flex flex-col items-start p-2 bg-white w-1/3 hover:scale-105 gap-1"
               to={`/jobs/${job._id}`}
             >
               <h1>{job.title}</h1>
