@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../axios/api";
 import { Tab } from "@headlessui/react";
 import { Link } from "react-router-dom";
-import dateFormater from "../utils/DateFormater";
+import dateFormatter from "../utils/DateFormater";
 
 export default function ProfileBusinessPage() {
   const [business, setBusiness] = useState({});
@@ -63,7 +63,8 @@ export default function ProfileBusinessPage() {
           </Tab>
         </Tab.List>
         <Tab.Panels className="mt-2">
-          <Tab.Panel className="rounded-xl p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2">
+          {/* VAGAS */}
+          <Tab.Panel className="rounded-xl  p-3">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-gray-50">
@@ -86,6 +87,7 @@ export default function ProfileBusinessPage() {
                     >
                       Status
                     </th>
+
                     <th
                       scope="col"
                       className="relative py-3.5 pl-3 pr-4 sm:pr-6"
@@ -102,18 +104,21 @@ export default function ProfileBusinessPage() {
                           <Link to={`/jobs/${job._id}`}>{job.title}</Link>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                          {dateFormater(job.createdAt)}
+                          {dateFormatter(job.createdAt)}
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                           {job.status}
                         </td>
+
                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <Link
-                            to={`/profile-business/job/${job._id}`}
-                            className="text-indigo-600 hover:text-indigo-900"
-                          >
-                            Editar
-                          </Link>
+                          {job.status === "ABERTA" && (
+                            <Link
+                              to={`/business/editar-vaga/${job._id}`}
+                              className="text-indigo-600 hover:text-indigo-900"
+                            >
+                              Editar
+                            </Link>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -122,6 +127,7 @@ export default function ProfileBusinessPage() {
             </div>
           </Tab.Panel>
 
+          {/* PROFILE */}
           <Tab.Panel className="rounded-xl bg-white p-3 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400">
             <form onSubmit={handleSubmitProfile}>
               <div className="flex flex-col space-y-2 mb-2">
